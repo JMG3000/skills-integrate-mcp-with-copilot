@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Function to get random position within game area
     function getRandomPosition() {
-        const gameRect = gameArea.getBoundingClientRect();
         const boxSize = 60; // Size of the box in pixels
         
         // Calculate maximum positions to keep box fully inside game area
