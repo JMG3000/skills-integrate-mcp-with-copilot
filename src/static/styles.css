@@ -28,6 +28,21 @@ header h1 {
   margin-bottom: 10px;
 }
 
+.game-link {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: 15px;
+  transition: background-color 0.3s;
+}
+
+.game-link:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
 main {
   display: flex;
   flex-wrap: wrap;
