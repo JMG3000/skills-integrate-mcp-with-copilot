@@ -5,7 +5,8 @@ A super simple FastAPI application that allows students to view and sign up for 
 ## Features
 
 - View all available extracurricular activities
-- Sign up for activities
+- Register, login, and logout with session cookies
+- Sign up for activities as an authenticated user
 
 ## Getting Started
 
@@ -29,8 +30,13 @@ A super simple FastAPI application that allows students to view and sign up for 
 
 | Method | Endpoint                                                          | Description                                                         |
 | ------ | ----------------------------------------------------------------- | ------------------------------------------------------------------- |
+| POST   | `/auth/register?email=user@mergington.edu&password=secret123`    | Register a new user                                                 |
+| POST   | `/auth/login?email=user@mergington.edu&password=secret123`       | Login and create a session cookie                                  |
+| POST   | `/auth/logout`                                                    | Logout and clear session                                            |
+| GET    | `/auth/me`                                                        | Return current authenticated user                                   |
 | GET    | `/activities`                                                     | Get all activities with their details and current participant count |
-| POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Sign up for an activity                                             |
+| POST   | `/activities/{activity_name}/signup`                             | Sign up current authenticated user for an activity                  |
+| DELETE | `/activities/{activity_name}/unregister`                          | Unregister current authenticated user from an activity              |
 
 ## Data Model
 
@@ -47,4 +53,4 @@ The application uses a simple data model with meaningful identifiers:
    - Name
    - Grade level
 
-All data is stored in memory, which means data will be reset when the server restarts.
+All users, sessions, and activities are stored in memory, which means data will be reset when the server restarts.
