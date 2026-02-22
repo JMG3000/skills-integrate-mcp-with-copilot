@@ -1,48 +1,37 @@
-# Integrate MCP with GitHub Copilot
+<div align="center">
 
-_Learn how to give GitHub Copilot more tools to expand the capabilities of your development workflow. All in less than an hour!_
+# 🎉 Congratulations JMG3000! 🎉
 
-## Welcome
+<img src="https://octodex.github.com/images/welcometocat.png" height="200px" />
 
-- **Who is this for**: Developers looking to enhance their AI-assisted workflows, GitHub Copilot users, and AI enthusiasts.
-- **What you'll learn**: We'll introduce MCP basics, a GitHub MCP server setup, and integration with Copilot Agent Mode.
-- **What you'll build**: A mixed development workflow that uses GitHub Copilot to manage issues while upgrading the extracurricular activities website for Mergington High School.
-- **Prerequisites**: [Getting Started with Copilot](https://github.com/skills/getting-started-with-github-copilot) Exercise
-- **How long**: This exercise takes less than one hour to complete.
+### 🌟 You've successfully completed the exercise! 🌟
 
-In this exercise, you will:
+## 🚀 Share Your Success!
 
-1. Integrate a GitHub MCP server with GitHub Copilot.
-2. Delegate Copilot to research similar projects and open issues.
-3. Ask Copilot to find an important issue and implement it from idea to pull request.
-4. Add comments to a recently closed issue.
+**Show off your new skills and inspire others!**
 
-### How to start this exercise
+<a href="https://twitter.com/intent/tweet?text=I%20just%20completed%20the%20%22Integrate%20MCP%20with%20GitHub%20Copilot%22%20GitHub%20Skills%20hands-on%20exercise!%20%F0%9F%8E%89%0A%0Ahttps%3A%2F%2Fgithub.com%2FJMG3000%2Fskills-integrate-mcp-with-copilot%0A%0A%23GitHubSkills%20%23OpenSource%20%23GitHubLearn" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.shields.io/badge/Share%20on%20X-1da1f2?style=for-the-badge&logo=x&logoColor=white" alt="Share on X" />
+</a>
+<a href="https://bsky.app/intent/compose?text=I%20just%20completed%20the%20%22Integrate%20MCP%20with%20GitHub%20Copilot%22%20GitHub%20Skills%20hands-on%20exercise!%20%F0%9F%8E%89%0A%0Ahttps%3A%2F%2Fgithub.com%2FJMG3000%2Fskills-integrate-mcp-with-copilot%0A%0A%23GitHubSkills%20%23OpenSource%20%23GitHubLearn" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.shields.io/badge/Share%20on%20Bluesky-0085ff?style=for-the-badge&logo=bluesky&logoColor=white" alt="Share on Bluesky" />
+</a>
+<a href="https://www.linkedin.com/feed/?shareActive=true&text=I%20just%20completed%20the%20%22Integrate%20MCP%20with%20GitHub%20Copilot%22%20GitHub%20Skills%20hands-on%20exercise!%20%F0%9F%8E%89%0A%0Ahttps%3A%2F%2Fgithub.com%2FJMG3000%2Fskills-integrate-mcp-with-copilot%0A%0A%23GitHubSkills%20%23OpenSource%20%23GitHubLearn" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.shields.io/badge/Share%20on%20LinkedIn-0077b5?style=for-the-badge&logo=linkedin&logoColor=white" alt="Share on LinkedIn" />
+</a>
 
-> [!IMPORTANT]
-> This exercise assumes basic knowledge of [GitHub Copilot](https://github.com/features/copilot). If you are unfamiliar, we recommend the [Getting Started with Copilot](https://github.com/skills/getting-started-with-github-copilot) exercise.
+### 🎯 What's Next?
 
-Simply copy the exercise to your account, then give your favorite Octocat (Mona) **about 20 seconds** to prepare the first lesson, then **refresh the page**.
+**Keep the momentum going!**
 
-[![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=skills&template_name=integrate-mcp-with-copilot&owner=%40me&name=skills-integrate-mcp-with-copilot&description=Exercise:+Integrate+Model+Context+Protocol+with+GitHub+Copilot&visibility=public)
+[![](https://img.shields.io/badge/Return%20to%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/JMG3000/skills-integrate-mcp-with-copilot/issues/2)
+[![GitHub Skills](https://img.shields.io/badge/Explore%20GitHub%20Skills-000000?style=for-the-badge&logo=github&logoColor=white)](https://learn.github.com/skills)
 
-<details>
-<summary>Having trouble? 🤷</summary><br/>
+*There's no better way to learn than building things!* 🚀
 
-When copying the exercise, we recommend the following settings:
-
-- For owner, choose your personal account or an organization to host the repository.
-
-- We recommend creating a public repository, since private repositories will use Actions minutes.
-
-If the exercise isn't ready in 20 seconds, please check the [Actions](../../actions) tab.
-
-- Check to see if a job is running. Sometimes it simply takes a bit longer.
-
-- If the page shows a failed job, please submit an issue. Nice, you found a bug! 🐛
-
-</details>
+</div>
 
 ---
 
 &copy; 2025 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
+

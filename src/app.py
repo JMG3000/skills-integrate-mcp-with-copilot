@@ -5,14 +5,18 @@ A super simple FastAPI application that allows students to view and sign up
 for extracurricular activities at Mergington High School.
 """
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Cookie, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 import os
 from pathlib import Path
+import hashlib
+import secrets
 
 app = FastAPI(title="Mergington High School API",
               description="API for viewing and signing up for extracurricular activities")
+
+SESSION_COOKIE_NAME = "session_token"
 
 # Mount the static files directory
 current_dir = Path(__file__).parent
@@ -77,6 +81,13 @@ activities = {
     }
 }
 
+users = {}
+sessions = {}
+
+
+def hash_password(password: str) -> str:
+    return hashlib.sha256(password.encode("utf-8")).hexdigest()
+
 
 @app.get("/")
 def root():
@@ -88,9 +99,62 @@ def get_activities():
     return activities
 
 
+@app.post("/auth/register")
+def register(email: str, password: str):
+    if email in users:
+        raise HTTPException(status_code=400, detail="User already exists")
+
+    if len(password) < 8:
+        raise HTTPException(status_code=400, detail="Password must be at least 8 characters")
+
+    users[email] = {
+        "email": email,
+        "password_hash": hash_password(password)
+    }
+    return {"message": f"Registered user {email}"}
+
+
+@app.post("/auth/login")
+def login(response: Response, email: str, password: str):
+    if email not in users or users[email]["password_hash"] != hash_password(password):
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+
+    token = secrets.token_urlsafe(32)
+    sessions[token] = email
+
+    response.set_cookie(
+        key=SESSION_COOKIE_NAME,
+        value=token,
+        httponly=True,
+        samesite="lax",
+        max_age=60 * 60 * 24
+    )
+    return {"message": "Logged in successfully", "email": email}
+
+
+@app.post("/auth/logout")
+def logout(response: Response, session_token: str | None = Cookie(default=None, alias=SESSION_COOKIE_NAME)):
+    if session_token and session_token in sessions:
+        del sessions[session_token]
+    response.delete_cookie(SESSION_COOKIE_NAME)
+    return {"message": "Logged out successfully"}
+
+
+@app.get("/auth/me")
+def me(session_token: str | None = Cookie(default=None, alias=SESSION_COOKIE_NAME)):
+    if not session_token or session_token not in sessions:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    return {"email": sessions[session_token]}
+
+
 @app.post("/activities/{activity_name}/signup")
-def signup_for_activity(activity_name: str, email: str):
+def signup_for_activity(activity_name: str, session_token: str | None = Cookie(default=None, alias=SESSION_COOKIE_NAME)):
     """Sign up a student for an activity"""
+    if not session_token or session_token not in sessions:
+        raise HTTPException(status_code=401, detail="Authentication required")
+
+    email = sessions[session_token]
+
     # Validate activity exists
     if activity_name not in activities:
         raise HTTPException(status_code=404, detail="Activity not found")
@@ -111,8 +175,17 @@ def signup_for_activity(activity_name: str, email: str):
 
 
 @app.delete("/activities/{activity_name}/unregister")
-def unregister_from_activity(activity_name: str, email: str):
+def unregister_from_activity(activity_name: str, email: str | None = None, session_token: str | None = Cookie(default=None, alias=SESSION_COOKIE_NAME)):
     """Unregister a student from an activity"""
+    if not session_token or session_token not in sessions:
+        raise HTTPException(status_code=401, detail="Authentication required")
+
+    current_user_email = sessions[session_token]
+    target_email = email or current_user_email
+
+    if target_email != current_user_email:
+        raise HTTPException(status_code=403, detail="You can only unregister yourself")
+
     # Validate activity exists
     if activity_name not in activities:
         raise HTTPException(status_code=404, detail="Activity not found")
@@ -121,12 +194,12 @@ def unregister_from_activity(activity_name: str, email: str):
     activity = activities[activity_name]
 
     # Validate student is signed up
-    if email not in activity["participants"]:
+    if target_email not in activity["participants"]:
         raise HTTPException(
             status_code=400,
             detail="Student is not signed up for this activity"
         )
 
     # Remove student
-    activity["participants"].remove(email)
-    return {"message": f"Unregistered {email} from {activity_name}"}
+    activity["participants"].remove(target_email)
+    return {"message": f"Unregistered {target_email} from {activity_name}"}

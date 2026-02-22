@@ -72,6 +72,11 @@ section h3 {
   color: #1a237e;
 }
 
+section h4 {
+  margin: 10px 0;
+  color: #1a237e;
+}
+
 .activity-card {
   margin-bottom: 15px;
   padding: 15px;
@@ -179,6 +184,11 @@ button:hover {
   background-color: #3949ab;
 }
 
+button:disabled {
+  background-color: #9fa8da;
+  cursor: not-allowed;
+}
+
 .message {
   margin-top: 20px;
   padding: 10px;
@@ -205,6 +215,16 @@ button:hover {
 
 .hidden {
   display: none;
+}
+
+#auth-status {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+#logout-btn {
+  margin-top: 10px;
 }
 
 footer {
